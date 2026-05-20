@@ -161,7 +161,7 @@ function MintCrmMockup() {
               <span>Q2 Progress</span><span>72%</span>
             </div>
             <div style={{ height: 3, background: 'rgba(255,255,255,0.06)', borderRadius: 2, overflow: 'hidden' }}>
-              <div className="cs2-progress" style={{ height: '100%', background: 'linear-gradient(90deg, var(--accent), var(--violet))', width: '0%', borderRadius: 2 }} />
+              <div className="cs2-progress" style={{ height: '100%', background: '#214EEE', width: '0%', borderRadius: 2 }} />
             </div>
           </div>
         </div>

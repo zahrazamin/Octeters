@@ -167,7 +167,7 @@ function TerminalMockup() {
         </div>
         <div className="svc4-progress-wrap" style={{ opacity: 0 }}>
           <div style={{ height: 4, background: 'rgba(255,255,255,0.06)', borderRadius: 2, overflow: 'hidden' }}>
-            <div className="svc4-progress" style={{ height: '100%', background: 'linear-gradient(90deg, var(--accent), var(--green))', width: '0%', borderRadius: 2 }} />
+            <div className="svc4-progress" style={{ height: '100%', background: '#214EEE', width: '0%', borderRadius: 2 }} />
           </div>
           <div style={{ fontSize: 8, color: 'rgba(255,255,255,0.3)', marginTop: 2 }}>building image...</div>
         </div>
@@ -218,7 +218,7 @@ function CheckoutMockup() {
         <div style={{ height: 1, background: 'var(--border-default)' }} />
         {/* Pay button */}
         <div className="svc5-paybtn" style={{
-          background: 'linear-gradient(135deg, var(--accent), var(--violet))',
+          background: '#214EEE',
           borderRadius: 5, padding: '4px 8px',
           fontSize: 9, color: 'white',
           fontFamily: 'var(--font-heading)', fontWeight: 600,

@@ -95,7 +95,7 @@ export default function GallerySection() {
           height: '60vh',
           zIndex: 10,
           pointerEvents: 'none',
-          background: 'linear-gradient(to right, rgba(99,102,241,0.15), rgba(109,40,217,0.2), rgba(26,111,255,0.15))',
+          background: 'rgba(33, 78, 238, 0.2)',
           filter: 'blur(80px)',
           mixBlendMode: 'screen',
         }}

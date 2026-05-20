@@ -77,7 +77,7 @@ export default function HeroDashboard() {
           <div style={{
             width: '28px', height: '28px',
             borderRadius: '50%',
-            background: 'linear-gradient(135deg, #1A6FFF, #00B4D8)',
+            background: '#214EEE',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             fontSize: '10px', fontWeight: 600, color: '#fff',
             fontFamily: 'var(--font-heading)',

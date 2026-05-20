@@ -121,7 +121,7 @@ function B2BCrmMockup() {
             <div style={{ height: 4, background: 'rgba(255,255,255,0.06)', borderRadius: 2, overflow: 'hidden' }}>
               <div
                 className="crm-progress"
-                style={{ height: '100%', background: 'linear-gradient(90deg, var(--accent), var(--violet))', borderRadius: 2, width: '55%' }}
+                style={{ height: '100%', background: '#214EEE', borderRadius: 2, width: '55%' }}
               />
             </div>
           </div>
