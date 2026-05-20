@@ -1,0 +1,1739 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — TAILWIND v4 THEME
+   ============================================================ */
+@theme {
+  /* Background colors */
+  --color-bg-primary: #060810;
+  --color-bg-secondary: #0A0E1A;
+  --color-bg-card: #0D1525;
+  --color-bg-card-hover: #122040;
+  --color-bg-elevated: #162848;
+
+  /* Accent / brand colors */
+  --color-accent: #1A6FFF;
+  --color-accent-light: #4D94FF;
+  --color-accent-dark: #0050CC;
+  --color-violet: #00B4D8;
+  --color-purple: #48CAE4;
+
+  /* Text colors */
+  --color-text-primary: #F0F4FF;
+  --color-text-secondary: #8BA3C4;
+  --color-text-muted: #4D6A8A;
+
+  /* Status colors */
+  --color-green: #10B981;
+  --color-amber: #F59E0B;
+  --color-red-status: #EF4444;
+  --color-blue-info: #1A6FFF;
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Rethink Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', Consolas, monospace;
+}
+
+/* ============================================================
+   SEMANTIC ALIASES — match design brief variable names
+   ============================================================ */
+:root {
+  --bg-primary:    #060810;
+  --bg-secondary:  #0A0E1A;
+  --bg-card:       #0D1525;
+  --bg-card-hover: #122040;
+  --bg-elevated:   #162848;
+
+  --accent:       #1A6FFF;
+  --accent-light: #4D94FF;
+  --accent-dark:  #0050CC;
+  --accent-glow:  rgba(26, 111, 255, 0.18);
+  --violet:       #00B4D8;
+  --purple:       #48CAE4;
+
+  --text-primary:   #F0F4FF;
+  --text-secondary: #8BA3C4;
+  --text-muted:     #4D6A8A;
+
+  --border-default: rgba(26, 111, 255, 0.12);
+  --border-hover:   rgba(26, 111, 255, 0.25);
+  --border-accent:  rgba(26, 111, 255, 0.4);
+
+  --green: #10B981;
+  --amber: #F59E0B;
+  --red:   #EF4444;
+  --blue:  #1A6FFF;
+}
+
+/* ============================================================
+   BASE RESET & GLOBAL STYLES
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Lenis handles smooth scroll — keep this as auto */
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+p { margin: 0; }
+a { text-decoration: none; }
+button { font-family: inherit; }
+img, svg { display: block; }
+
+/* ============================================================
+   TYPOGRAPHY CLASSES
+   ============================================================ */
+
+/* Display — hero headlines */
+.text-display {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* Page titles */
+.text-h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* Section headings */
+.text-h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+/* Card titles */
+.text-h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(20px, 2.5vw, 24px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-primary);
+}
+
+/* Small headings */
+.text-h4 {
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 2vw, 20px);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+/* Body text — all three sizes use Inter */
+.text-body-lg {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.text-body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.text-body-sm {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+/* Section label — 12px uppercase indigo */
+.text-label {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent-light);
+}
+
+/* Stat numbers */
+.text-stat {
+  font-family: var(--font-heading);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+/* Nav links */
+.text-nav {
+  font-family: var(--font-heading);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+/* ============================================================
+   GRADIENT TEXT
+   ============================================================ */
+.gradient-text {
+  background: linear-gradient(135deg, #1A6FFF, #00B4D8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-heading);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #1A6FFF 0%, #00B4D8 100%);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(26, 111, 255, 0.35), 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 35px rgba(26, 111, 255, 0.55), 0 6px 20px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+  color: #fff;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+  border: 1px solid var(--border-hover);
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  background: rgba(26, 111, 255, 0.08);
+  transform: translateY(-1px);
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  box-shadow: 0 0 40px rgba(26, 111, 255, 0.06);
+  transform: translateY(-2px);
+}
+
+.card-lg {
+  padding: 32px;
+}
+
+/* ============================================================
+   CHIPS / TAGS
+   ============================================================ */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(26, 111, 255, 0.12);
+  color: var(--accent-light);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  border: 1px solid rgba(26, 111, 255, 0.2);
+}
+
+/* ============================================================
+   LAYOUT HELPERS
+   ============================================================ */
+.section {
+  padding: 96px 0;
+}
+
+@media (min-width: 640px) {
+  .section { padding: 128px 0; }
+}
+
+@media (min-width: 1024px) {
+  .section { padding: 160px 0; }
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Responsive visibility helpers */
+.desktop-only { display: flex; }
+.mobile-only  { display: none; }
+
+@media (max-width: 1024px) {
+  .desktop-only { display: none !important; }
+  .mobile-only  { display: flex !important; }
+}
+
+/* ============================================================
+   BACKGROUND DECORATIVE ELEMENTS
+   ============================================================ */
+
+/* Faint grid pattern */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(26, 111, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(26, 111, 255, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  animation: gridPulse 5s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 1.6; }
+}
+
+/* Gradient orbs */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.orb-indigo {
+  background: rgba(26, 111, 255, 0.12);
+  animation: orbFloat 8s ease-in-out infinite;
+}
+
+.orb-violet {
+  background: rgba(0, 180, 216, 0.10);
+  animation: orbFloat 6s ease-in-out infinite reverse;
+}
+
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-20px); }
+}
+
+/* ============================================================
+   GLASSMORPHISM — sticky header
+   ============================================================ */
+.glass {
+  background: rgba(6, 8, 16, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--border-default);
+}
+
+/* ============================================================
+   SCROLL-TRIGGERED REVEAL (CSS fallback + GSAP sets visibility)
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+}
+
+/* ============================================================
+   SECTION DIVIDER — sweeps left→right on scroll
+   ============================================================ */
+.section-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--accent), var(--violet), transparent);
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* ============================================================
+   PULSE GLOW — CTA button halo
+   ============================================================ */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(26, 111, 255, 0.35), 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(26, 111, 255, 0.60), 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.btn-glow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   MOCKUP / MINI-UI SHARED STYLES (used across animated graphics)
+   ============================================================ */
+.mockup-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
+  border-radius: 12px;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  position: relative;
+}
+
+.mockup-header {
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-default);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.mockup-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-green  { background: var(--green); }
+.status-amber  { background: var(--amber); animation: statusPulse 1.5s ease-in-out infinite; }
+.status-gray   { background: var(--text-muted); }
+.status-blue   { background: var(--blue); }
+.status-indigo { background: var(--accent); }
+
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* ============================================================
+   PREFERS-REDUCED-MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .orb       { animation: none !important; transform: none !important; }
+  .grid-bg   { animation: none !important; }
+  .btn-glow  { animation: none !important; }
+  .reveal    { opacity: 1 !important; transform: none !important; }
+}
+
+/* ============================================================
+   HERO SECTION LAYOUT
+   ============================================================ */
+.hero-grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .hero-grid-layout {
+    grid-template-columns: 60fr 40fr;
+    gap: 80px;
+  }
+}
+
+/* ============================================================
+   HERO DASHBOARD — KEYFRAME ANIMATIONS
+   All animations use only transform + opacity for GPU perf.
+   ============================================================ */
+
+/* Sidebar active indicator steps through 5 nav items (3s each) */
+@keyframes heroSidebarCycle {
+  0%   { transform: translateY(0px); }
+  20%  { transform: translateY(30px); }
+  40%  { transform: translateY(60px); }
+  60%  { transform: translateY(90px); }
+  80%  { transform: translateY(120px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Table rows stagger-in, hold, fade out, then loop (10s cycle) */
+@keyframes heroRowReveal {
+  0%, 5%    { opacity: 0; transform: translateX(-6px); }
+  14%, 74%  { opacity: 1; transform: translateX(0); }
+  82%, 100% { opacity: 0; transform: translateX(-6px); }
+}
+
+/* Chart area reveals left-to-right via clip-path */
+@keyframes heroChartClip {
+  0%, 2%    { clip-path: inset(0 100% 0 0); }
+  40%       { clip-path: inset(0 0% 0 0); }
+  86%       { clip-path: inset(0 0% 0 0); }
+  93%, 100% { clip-path: inset(0 100% 0 0); }
+}
+
+/* Cursor blink in search bar */
+@keyframes heroCursorBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* Toast slides in from right, holds, slides out */
+@keyframes heroToast {
+  0%, 100%  { transform: translateX(115%); opacity: 0; }
+  8%        { transform: translateX(0);    opacity: 1; }
+  28%       { transform: translateX(0);    opacity: 1; }
+  36%       { transform: translateX(115%); opacity: 0; }
+}
+
+/* Online dot gentle pulse */
+@keyframes heroOnlinePulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%      { opacity: 0.7; transform: scale(1.2); }
+}
+
+/* ============================================================
+   HERO DASHBOARD — ANIMATION UTILITY CLASSES
+   ============================================================ */
+.hero-sidebar-active {
+  animation: heroSidebarCycle 15s steps(5, end) infinite;
+}
+
+.hero-table-row {
+  animation: heroRowReveal 10s ease-in-out both infinite;
+}
+.hero-table-row-2 { animation-delay: 0.35s; }
+.hero-table-row-3 { animation-delay: 0.70s; }
+.hero-table-row-4 { animation-delay: 1.05s; }
+
+.hero-chart-clip {
+  animation: heroChartClip 8s ease-in-out infinite;
+}
+
+.hero-toast {
+  animation: heroToast 8s 2s ease-in-out infinite;
+  transform: translateX(115%);
+}
+
+.hero-cursor-blink {
+  animation: heroCursorBlink 1s ease-in-out infinite;
+}
+
+.hero-online-pulse {
+  animation: heroOnlinePulse 2.5s ease-in-out infinite;
+}
+
+/* ============================================================
+   VERTICALS SECTION — GRID + CARD STYLES
+   ============================================================ */
+
+.verticals-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 900px) {
+  .verticals-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+.vertical-card {
+  transition: border-color 0.35s ease, background 0.35s ease,
+              box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.verticals-proof-link {
+  font-size: 13px;
+  color: var(--accent-light);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.verticals-proof-link:hover { color: var(--purple); }
+
+.verticals-inline-link {
+  color: var(--accent-light);
+  font-family: var(--font-heading);
+  transition: color 0.2s ease;
+}
+.verticals-inline-link:hover { color: var(--purple); }
+
+/* ============================================================
+   B2B CRM MOCKUP — ANIMATIONS  (8 s loop)
+   ============================================================ */
+
+@keyframes crmCheck1 {
+  0%, 10%   { background: transparent; border-color: rgba(107,114,128,0.4); }
+  20%, 80%  { background: var(--accent); border-color: var(--accent); }
+  90%, 100% { background: transparent; border-color: rgba(107,114,128,0.4); }
+}
+@keyframes crmCheck2 {
+  0%, 33%   { background: transparent; border-color: rgba(107,114,128,0.4); }
+  43%, 80%  { background: var(--accent); border-color: var(--accent); }
+  90%, 100% { background: transparent; border-color: rgba(107,114,128,0.4); }
+}
+@keyframes crmCheck3 {
+  0%, 56%   { background: transparent; border-color: rgba(107,114,128,0.4); }
+  66%, 80%  { background: var(--accent); border-color: var(--accent); }
+  90%, 100% { background: transparent; border-color: rgba(107,114,128,0.4); }
+}
+
+@keyframes crmMark1 {
+  0%, 14%   { opacity: 0; }
+  22%, 80%  { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+@keyframes crmMark2 {
+  0%, 37%   { opacity: 0; }
+  45%, 80%  { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+@keyframes crmMark3 {
+  0%, 60%   { opacity: 0; }
+  68%, 80%  { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+
+@keyframes crmStrike1 {
+  0%, 14%   { width: 0%; }
+  24%, 80%  { width: 100%; }
+  90%, 100% { width: 0%; }
+}
+@keyframes crmStrike2 {
+  0%, 37%   { width: 0%; }
+  47%, 80%  { width: 100%; }
+  90%, 100% { width: 0%; }
+}
+@keyframes crmStrike3 {
+  0%, 60%   { width: 0%; }
+  70%, 80%  { width: 100%; }
+  90%, 100% { width: 0%; }
+}
+
+@keyframes crmProgress {
+  0%          { width: 55%; }
+  75%         { width: 100%; }
+  88%         { width: 100%; }
+  95%, 100%   { width: 55%; }
+}
+
+@keyframes crmFeed1 {
+  0%, 14%   { opacity: 0; transform: translateX(-6px); }
+  24%, 80%  { opacity: 1; transform: translateX(0); }
+  90%, 100% { opacity: 0; transform: translateX(-6px); }
+}
+@keyframes crmFeed2 {
+  0%, 38%   { opacity: 0; transform: translateX(-6px); }
+  48%, 80%  { opacity: 1; transform: translateX(0); }
+  90%, 100% { opacity: 0; transform: translateX(-6px); }
+}
+
+.crm-check-1    { animation: crmCheck1 8s ease-in-out infinite; }
+.crm-check-2    { animation: crmCheck2 8s ease-in-out infinite; }
+.crm-check-3    { animation: crmCheck3 8s ease-in-out infinite; }
+.crm-checkmark-1 { animation: crmMark1 8s ease-in-out infinite; }
+.crm-checkmark-2 { animation: crmMark2 8s ease-in-out infinite; }
+.crm-checkmark-3 { animation: crmMark3 8s ease-in-out infinite; }
+.crm-strike-1   { animation: crmStrike1 8s ease-in-out infinite; }
+.crm-strike-2   { animation: crmStrike2 8s ease-in-out infinite; }
+.crm-strike-3   { animation: crmStrike3 8s ease-in-out infinite; }
+.crm-progress   { animation: crmProgress 8s ease-in-out infinite; }
+.crm-feed-1     { animation: crmFeed1 8s ease-in-out infinite; }
+.crm-feed-2     { animation: crmFeed2 8s ease-in-out infinite; }
+
+/* ============================================================
+   E-COMMERCE MOCKUP — ANIMATIONS  (8 s loop)
+   ============================================================ */
+
+@keyframes ecomSale {
+  0%, 10%   { opacity: 0; transform: scale(0.6) rotate(-8deg); }
+  22%, 70%  { opacity: 1; transform: scale(1)   rotate(-8deg); }
+  82%, 100% { opacity: 0; transform: scale(0.6) rotate(-8deg); }
+}
+
+@keyframes ecomTrack {
+  0%,  2%   { left: 10%; }
+  22%, 24%  { left: 36.6%; }
+  47%, 49%  { left: 63.3%; }
+  72%, 96%  { left: 90%; }
+  97%, 100% { left: 10%; }
+}
+
+@keyframes ecomPayment {
+  0%, 44%   { transform: translateY(100%); opacity: 0; }
+  54%, 76%  { transform: translateY(0);    opacity: 1; }
+  86%, 100% { transform: translateY(100%); opacity: 0; }
+}
+
+.ecom-sale          { animation: ecomSale 8s ease-in-out infinite; }
+.ecom-track-dot     { animation: ecomTrack 8s linear infinite; }
+.ecom-payment-toast { animation: ecomPayment 8s ease-in-out infinite; }
+
+/* ============================================================
+   MARKETPLACE MOCKUP — ANIMATIONS  (8 s loop)
+   ============================================================ */
+
+@keyframes propCursorBlink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+@keyframes propListing1 {
+  0%, 12%   { opacity: 0; transform: translateY(6px); }
+  24%, 80%  { opacity: 1; transform: translateY(0); }
+  90%, 100% { opacity: 0; transform: translateY(6px); }
+}
+@keyframes propListing2 {
+  0%, 24%   { opacity: 0; transform: translateY(6px); }
+  36%, 80%  { opacity: 1; transform: translateY(0); }
+  90%, 100% { opacity: 0; transform: translateY(6px); }
+}
+
+@keyframes propPin1 {
+  0%, 18%   { opacity: 0; transform: translate(-50%, calc(-100% - 8px)); }
+  30%, 80%  { opacity: 1; transform: translate(-50%, -100%); }
+  90%, 100% { opacity: 0; transform: translate(-50%, calc(-100% - 8px)); }
+}
+@keyframes propPin2 {
+  0%, 28%   { opacity: 0; transform: translate(-50%, calc(-100% - 8px)); }
+  40%, 80%  { opacity: 1; transform: translate(-50%, -100%); }
+  90%, 100% { opacity: 0; transform: translate(-50%, calc(-100% - 8px)); }
+}
+@keyframes propPin3 {
+  0%, 38%   { opacity: 0; transform: translate(-50%, calc(-100% - 8px)); }
+  50%, 80%  { opacity: 1; transform: translate(-50%, -100%); }
+  90%, 100% { opacity: 0; transform: translate(-50%, calc(-100% - 8px)); }
+}
+
+@keyframes propFilter1 {
+  0%, 48%   { opacity: 0; transform: translateX(-4px); }
+  60%, 80%  { opacity: 1; transform: translateX(0); }
+  90%, 100% { opacity: 0; transform: translateX(-4px); }
+}
+@keyframes propFilter2 {
+  0%, 54%   { opacity: 0; transform: translateX(-4px); }
+  66%, 80%  { opacity: 1; transform: translateX(0); }
+  90%, 100% { opacity: 0; transform: translateX(-4px); }
+}
+@keyframes propFilter3 {
+  0%, 60%   { opacity: 0; transform: translateX(-4px); }
+  72%, 80%  { opacity: 1; transform: translateX(0); }
+  90%, 100% { opacity: 0; transform: translateX(-4px); }
+}
+
+.prop-cursor   { animation: propCursorBlink 0.8s step-end infinite; }
+.prop-listing-1 { animation: propListing1 8s ease-in-out infinite; }
+.prop-listing-2 { animation: propListing2 8s ease-in-out infinite; }
+.prop-pin-1    { animation: propPin1 8s ease-in-out infinite; }
+.prop-pin-2    { animation: propPin2 8s ease-in-out infinite; }
+.prop-pin-3    { animation: propPin3 8s ease-in-out infinite; }
+.prop-filter-1 { animation: propFilter1 8s ease-in-out infinite; }
+.prop-filter-2 { animation: propFilter2 8s ease-in-out infinite; }
+.prop-filter-3 { animation: propFilter3 8s ease-in-out infinite; }
+
+/* ============================================================
+   PROCESS SECTION — LAYOUT + PIPELINE + PARALLAX
+   ============================================================ */
+
+/* Step card grid */
+.process-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (min-width: 1024px) {
+  .process-steps-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+}
+
+.proc-step-num {
+  font-family: var(--font-heading);
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+
+.process-step-card {
+  transition: border-color 0.5s ease, box-shadow 0.5s ease,
+              background 0.35s ease, transform 0.35s ease;
+}
+
+/* Pipeline wrapper — hidden on narrow screens */
+.proc-pipeline-wrap {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .proc-pipeline-wrap {
+    display: block;
+  }
+}
+
+/* Pipeline track container */
+.process-pipeline {
+  position: relative;
+  height: 90px;
+  width: 100%;
+}
+
+/* ── Flowing dashed line overlay ────────────────────────────────────── */
+.pipe-flow-dashes {
+  position: absolute;
+  inset: -1px 0;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(26, 111, 255, 0.55) 0px,
+    rgba(26, 111, 255, 0.55) 4px,
+    transparent 4px,
+    transparent 14px
+  );
+  animation: pipeLineFlow 0.9s linear infinite;
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+
+@keyframes pipeLineFlow {
+  from { transform: translateX(0); }
+  to   { transform: translateX(18px); }
+}
+
+/* ── Node circles ───────────────────────────────────────────────────── */
+.pipe-node-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* ── File card ──────────────────────────────────────────────────────── */
+.pipe-card {
+  position: absolute;
+  top: 6px;
+  left: 8%;
+  transform: translateX(-50%);
+  width: 118px;
+  padding: 6px 9px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-accent);
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(26, 111, 255, 0.14), 0 2px 6px rgba(0, 0, 0, 0.35);
+  animation: pipeCard 12s ease-in-out infinite;
+  opacity: 0;
+}
+
+/* ============================================================
+   PIPELINE KEYFRAMES — 12 s loop
+   ============================================================ */
+
+/* File card travels through 4 node positions */
+@keyframes pipeCard {
+  0%    { left: 8%;  opacity: 0; }
+  3%    { left: 8%;  opacity: 1; }  /* Fade in at Stage 1 */
+  13%   { left: 8%;  opacity: 1; }  /* Hold Stage 1 */
+  21%   { left: 36%; opacity: 1; }  /* Arrive Stage 2 */
+  33%   { left: 36%; opacity: 1; }  /* Hold Stage 2 */
+  41%   { left: 63%; opacity: 1; }  /* Arrive Stage 3 */
+  53%   { left: 63%; opacity: 1; }  /* Hold Stage 3 */
+  61%   { left: 88%; opacity: 1; }  /* Arrive Stage 4 */
+  80%   { left: 88%; opacity: 1; }  /* Hold Stage 4 */
+  85%   { left: 88%; opacity: 0; }  /* Fade out */
+  86%   { left: 8%;  opacity: 0; }  /* Jump to start (invisible) */
+  100%  { left: 8%;  opacity: 0; }  /* Wait */
+}
+
+/* Status badge 1 — "New" visible while at Stage 1 */
+@keyframes pipeStatus1 {
+  0%, 2%   { opacity: 0; }
+  5%, 15%  { opacity: 1; }
+  20%      { opacity: 0; }
+  100%     { opacity: 0; }
+}
+/* Status badge 2 — "In Review" visible while at Stage 2 */
+@keyframes pipeStatus2 {
+  0%, 20%  { opacity: 0; }
+  24%, 32% { opacity: 1; }
+  37%      { opacity: 0; }
+  100%     { opacity: 0; }
+}
+/* Status badge 3 — "Building" visible while at Stage 3 */
+@keyframes pipeStatus3 {
+  0%, 40%  { opacity: 0; }
+  44%, 52% { opacity: 1; }
+  57%      { opacity: 0; }
+  100%     { opacity: 0; }
+}
+/* Status badge 4 — "Delivered" visible while at Stage 4 */
+@keyframes pipeStatus4 {
+  0%, 60%  { opacity: 0; }
+  64%, 80% { opacity: 1; }
+  85%      { opacity: 0; }
+  100%     { opacity: 0; }
+}
+
+/* Node activations */
+@keyframes pipeNode1 {
+  0%, 3%    { background: var(--accent);             border-color: var(--accent);         box-shadow: 0 0 12px rgba(26,111,255,0.55); }
+  13%       { background: var(--accent);             border-color: var(--accent);         box-shadow: 0 0 12px rgba(26,111,255,0.55); }
+  20%       { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+  100%      { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+}
+@keyframes pipeNode2 {
+  0%, 20%   { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+  24%       { background: var(--amber);              border-color: var(--amber);           box-shadow: 0 0 12px rgba(245,158,11,0.45); }
+  33%       { background: var(--amber);              border-color: var(--amber);           box-shadow: 0 0 12px rgba(245,158,11,0.45); }
+  40%       { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+  100%      { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+}
+@keyframes pipeNode3 {
+  0%, 40%   { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+  44%       { background: var(--blue);               border-color: var(--blue);            box-shadow: 0 0 12px rgba(26,111,255,0.45); }
+  53%       { background: var(--blue);               border-color: var(--blue);            box-shadow: 0 0 12px rgba(26,111,255,0.45); }
+  60%       { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+  100%      { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+}
+@keyframes pipeNode4 {
+  0%, 60%   { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+  64%       { background: var(--green);              border-color: var(--green);           box-shadow: 0 0 12px rgba(16,185,129,0.45); }
+  80%       { background: var(--green);              border-color: var(--green);           box-shadow: 0 0 12px rgba(16,185,129,0.45); }
+  86%       { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+  100%      { background: rgba(255,255,255,0.05);   border-color: rgba(255,255,255,0.12); box-shadow: none; }
+}
+
+/* Step card border glow — synced with file card arrival */
+@keyframes stepGlow1 {
+  0%, 3%    { border-color: rgba(26,111,255,0.4);  box-shadow: 0 0 28px rgba(26,111,255,0.1); }
+  13%       { border-color: rgba(26,111,255,0.4);  box-shadow: 0 0 28px rgba(26,111,255,0.1); }
+  20%       { border-color: var(--border-default); box-shadow: none; }
+  100%      { border-color: var(--border-default); box-shadow: none; }
+}
+@keyframes stepGlow2 {
+  0%, 20%   { border-color: var(--border-default); box-shadow: none; }
+  24%       { border-color: rgba(245,158,11,0.35); box-shadow: 0 0 28px rgba(245,158,11,0.08); }
+  33%       { border-color: rgba(245,158,11,0.35); box-shadow: 0 0 28px rgba(245,158,11,0.08); }
+  40%       { border-color: var(--border-default); box-shadow: none; }
+  100%      { border-color: var(--border-default); box-shadow: none; }
+}
+@keyframes stepGlow3 {
+  0%, 40%   { border-color: var(--border-default); box-shadow: none; }
+  44%       { border-color: rgba(26,111,255,0.35);  box-shadow: 0 0 28px rgba(26,111,255,0.08); }
+  53%       { border-color: rgba(26,111,255,0.35);  box-shadow: 0 0 28px rgba(26,111,255,0.08); }
+  60%       { border-color: var(--border-default); box-shadow: none; }
+  100%      { border-color: var(--border-default); box-shadow: none; }
+}
+@keyframes stepGlow4 {
+  0%, 60%   { border-color: var(--border-default); box-shadow: none; }
+  64%       { border-color: rgba(16,185,129,0.35);  box-shadow: 0 0 28px rgba(16,185,129,0.08); }
+  80%       { border-color: rgba(16,185,129,0.35);  box-shadow: 0 0 28px rgba(16,185,129,0.08); }
+  87%       { border-color: var(--border-default); box-shadow: none; }
+  100%      { border-color: var(--border-default); box-shadow: none; }
+}
+
+/* Assign animations */
+.pipe-status-1 { animation: pipeStatus1 12s ease-in-out infinite; }
+.pipe-status-2 { animation: pipeStatus2 12s ease-in-out infinite; }
+.pipe-status-3 { animation: pipeStatus3 12s ease-in-out infinite; }
+.pipe-status-4 { animation: pipeStatus4 12s ease-in-out infinite; }
+
+.pipe-node-1 { animation: pipeNode1 12s ease-in-out infinite; }
+.pipe-node-2 { animation: pipeNode2 12s ease-in-out infinite; }
+.pipe-node-3 { animation: pipeNode3 12s ease-in-out infinite; }
+.pipe-node-4 { animation: pipeNode4 12s ease-in-out infinite; }
+
+.proc-step-glow-1 { animation: stepGlow1 12s ease-in-out infinite; }
+.proc-step-glow-2 { animation: stepGlow2 12s ease-in-out infinite; }
+.proc-step-glow-3 { animation: stepGlow3 12s ease-in-out infinite; }
+.proc-step-glow-4 { animation: stepGlow4 12s ease-in-out infinite; }
+
+/* ============================================================
+   SERVICES SECTION — GRID + CARD STYLES
+   ============================================================ */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Fixed-height mini-mockup wrapper */
+.svc-mockup {
+  height: 96px;
+  width: 100%;
+}
+
+.service-card {
+  transition: border-color 0.35s ease, background 0.35s ease,
+              box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.service-cap-link {
+  font-size: 12px;
+  color: var(--accent-light);
+  font-family: var(--font-heading);
+  font-weight: 500;
+  transition: color 0.2s ease;
+  display: inline-block;
+}
+.service-cap-link:hover { color: var(--purple); }
+
+/* ============================================================
+   SVC 1 — CODE EDITOR  (6 s loop)
+   ============================================================ */
+@keyframes svc1Line1 {
+  0%, 6%    { opacity: 0; transform: translateX(-4px); }
+  18%, 84%  { opacity: 1; transform: translateX(0); }
+  94%, 100% { opacity: 0; transform: translateX(-4px); }
+}
+@keyframes svc1Line2 {
+  0%, 24%   { opacity: 0; transform: translateX(-4px); }
+  36%, 84%  { opacity: 1; transform: translateX(0); }
+  94%, 100% { opacity: 0; transform: translateX(-4px); }
+}
+@keyframes svc1Line3 {
+  0%, 42%   { opacity: 0; transform: translateX(-4px); }
+  54%, 84%  { opacity: 1; transform: translateX(0); }
+  94%, 100% { opacity: 0; transform: translateX(-4px); }
+}
+@keyframes svc1Cursor {
+  0%, 50%   { opacity: 0; }
+  58%, 84%  { opacity: 1; }
+  94%, 100% { opacity: 0; }
+}
+.svc1-line-1    { animation: svc1Line1 6s ease-in-out infinite; }
+.svc1-line-2    { animation: svc1Line2 6s ease-in-out infinite; }
+.svc1-line-3    { animation: svc1Line3 6s ease-in-out infinite; }
+.svc1-cursor-wrap { animation: svc1Cursor 6s ease-in-out infinite; }
+
+/* ============================================================
+   SVC 2 — MULTI-PANEL MODAL  (6 s loop)
+   ============================================================ */
+@keyframes svc2Modal {
+  0%, 10%   { transform: translateY(100%); opacity: 0; }
+  22%, 82%  { transform: translateY(0);    opacity: 1; }
+  92%, 100% { transform: translateY(100%); opacity: 0; }
+}
+@keyframes svc2Field1 {
+  0%, 28%   { opacity: 0; }
+  40%, 82%  { opacity: 1; }
+  92%, 100% { opacity: 0; }
+}
+@keyframes svc2Field2 {
+  0%, 46%   { opacity: 0; }
+  58%, 82%  { opacity: 1; }
+  92%, 100% { opacity: 0; }
+}
+.svc2-modal   { animation: svc2Modal 6s ease-in-out infinite; }
+.svc2-field-1 { animation: svc2Field1 6s ease-in-out infinite; }
+.svc2-field-2 { animation: svc2Field2 6s ease-in-out infinite; }
+.svc2-cursor  { animation: heroCursorBlink 0.8s step-end infinite; }
+
+/* ============================================================
+   SVC 3 — AI CHAT  (6 s loop)
+   ============================================================ */
+@keyframes svc3User {
+  0%, 6%    { opacity: 0; transform: translateY(4px); }
+  18%, 90%  { opacity: 1; transform: translateY(0); }
+  98%, 100% { opacity: 0; }
+}
+@keyframes svc3DotsWrap {
+  0%, 20%   { opacity: 0; }
+  28%, 44%  { opacity: 1; }
+  54%, 100% { opacity: 0; }
+}
+@keyframes svc3DotPulse {
+  0%, 100% { opacity: 0.3; transform: translateY(0); }
+  50%      { opacity: 1;   transform: translateY(-2px); }
+}
+@keyframes svc3Response {
+  0%, 42%   { opacity: 0; transform: translateY(4px); }
+  54%, 90%  { opacity: 1; transform: translateY(0); }
+  98%, 100% { opacity: 0; }
+}
+.svc3-user      { animation: svc3User 6s ease-in-out infinite; }
+.svc3-dots-wrap { animation: svc3DotsWrap 6s ease-in-out infinite; }
+.svc3-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent);
+  animation: svc3DotPulse 0.9s ease-in-out infinite;
+}
+.svc3-response  { animation: svc3Response 6s ease-in-out infinite; }
+
+/* ============================================================
+   SVC 4 — TERMINAL  (6 s loop)
+   ============================================================ */
+@keyframes svc4Cmd {
+  0%, 5%    { opacity: 0; }
+  15%, 90%  { opacity: 1; }
+  98%, 100% { opacity: 0; }
+}
+@keyframes svc4ProgressWrap {
+  0%, 12%   { opacity: 0; }
+  22%, 90%  { opacity: 1; }
+  98%, 100% { opacity: 0; }
+}
+@keyframes svc4Progress {
+  0%, 14%   { width: 0%; }
+  50%       { width: 100%; }
+  90%       { width: 100%; }
+  98%, 100% { width: 0%; }
+}
+@keyframes svc4Complete {
+  0%, 48%   { opacity: 0; transform: translateY(3px); }
+  60%, 90%  { opacity: 1; transform: translateY(0); }
+  98%, 100% { opacity: 0; }
+}
+.svc4-cmd           { animation: svc4Cmd 6s ease-in-out infinite; }
+.svc4-progress-wrap { animation: svc4ProgressWrap 6s ease-in-out infinite; }
+.svc4-progress      { animation: svc4Progress 6s ease-in-out infinite; }
+.svc4-complete      { animation: svc4Complete 6s ease-in-out infinite; }
+
+/* ============================================================
+   SVC 5 — CHECKOUT  (6 s loop)
+   ============================================================ */
+@keyframes svc5Badge {
+  0%, 12%   { opacity: 0; transform: scale(0.5); }
+  24%, 88%  { opacity: 1; transform: scale(1); }
+  96%, 100% { opacity: 0; transform: scale(0.5); }
+}
+@keyframes svc5PayBtn {
+  0%, 28%   { transform: translateY(100%); opacity: 0; }
+  40%, 88%  { transform: translateY(0);    opacity: 1; }
+  96%, 100% { transform: translateY(100%); opacity: 0; }
+}
+@keyframes svc5Confirm {
+  0%, 52%   { opacity: 0; transform: translateY(3px); }
+  64%, 88%  { opacity: 1; transform: translateY(0); }
+  96%, 100% { opacity: 0; }
+}
+.svc5-badge   { animation: svc5Badge 6s ease-in-out infinite; }
+.svc5-paybtn  { animation: svc5PayBtn 6s ease-in-out infinite; }
+.svc5-confirm { animation: svc5Confirm 6s ease-in-out infinite; }
+
+/* ============================================================
+   SVC 6 — TEST RUNNER  (6 s loop)
+   ============================================================ */
+@keyframes svc6Running {
+  0%, 4%    { opacity: 0; }
+  14%, 88%  { opacity: 1; }
+  96%, 100% { opacity: 0; }
+}
+@keyframes svc6ProgressWrap {
+  0%, 10%   { opacity: 0; }
+  20%, 88%  { opacity: 1; }
+  96%, 100% { opacity: 0; }
+}
+@keyframes svc6Progress {
+  0%, 12%   { width: 0%; }
+  50%       { width: 100%; }
+  88%       { width: 100%; }
+  96%, 100% { width: 0%; }
+}
+@keyframes svc6Passed {
+  0%, 44%   { opacity: 0; transform: translateY(3px); }
+  56%, 88%  { opacity: 1; transform: translateY(0); }
+  96%, 100% { opacity: 0; }
+}
+@keyframes svc6Coverage {
+  0%, 58%   { opacity: 0; }
+  70%, 88%  { opacity: 1; }
+  96%, 100% { opacity: 0; }
+}
+.svc6-running       { animation: svc6Running 6s ease-in-out infinite; }
+.svc6-progress-wrap { animation: svc6ProgressWrap 6s ease-in-out infinite; }
+.svc6-progress      { animation: svc6Progress 6s ease-in-out infinite; }
+.svc6-passed        { animation: svc6Passed 6s ease-in-out infinite; }
+.svc6-coverage      { animation: svc6Coverage 6s ease-in-out infinite; }
+
+/* ============================================================
+   WHY SECTION — 3-COL GRID + MOCKUP ANIMATIONS
+   ============================================================ */
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 900px) {
+  .why-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+.why-mockup {
+  height: 170px;
+}
+
+/* ── WHY1: CI/CD Pipeline  (10 s loop) ──────────────────── */
+
+/* Stage node color states */
+@keyframes why1Node1 {
+  0%, 4%   { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
+  8%, 35%  { border-color: var(--amber);           background: rgba(245,158,11,0.12); }
+  40%, 90% { border-color: var(--green);           background: rgba(16,185,129,0.12); }
+  96%, 100%{ border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
+}
+@keyframes why1Node2 {
+  0%, 28%  { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
+  32%, 60% { border-color: var(--amber);           background: rgba(245,158,11,0.12); }
+  65%, 90% { border-color: var(--green);           background: rgba(16,185,129,0.12); }
+  96%, 100%{ border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
+}
+@keyframes why1Node3 {
+  0%, 55%  { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
+  60%, 82% { border-color: var(--amber);           background: rgba(245,158,11,0.12); }
+  86%, 90% { border-color: var(--green);           background: rgba(16,185,129,0.12); }
+  96%, 100%{ border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
+}
+
+/* Connector fill */
+@keyframes why1Conn1 {
+  0%, 4%   { width: 0%; }
+  35%, 90% { width: 100%; }
+  96%, 100%{ width: 0%; }
+}
+@keyframes why1Conn2 {
+  0%, 30%  { width: 0%; }
+  62%, 90% { width: 100%; }
+  96%, 100%{ width: 0%; }
+}
+
+/* Log lines */
+@keyframes why1Log1 {
+  0%, 6%   { opacity: 0; }
+  14%, 90% { opacity: 1; }
+  96%, 100%{ opacity: 0; }
+}
+@keyframes why1Log2 {
+  0%, 28%  { opacity: 0; }
+  38%, 90% { opacity: 1; }
+  96%, 100%{ opacity: 0; }
+}
+@keyframes why1Log3 {
+  0%, 54%  { opacity: 0; }
+  64%, 90% { opacity: 1; }
+  96%, 100%{ opacity: 0; }
+}
+
+/* Deploy toast */
+@keyframes why1Toast {
+  0%, 78%  { opacity: 0; transform: translateY(6px); }
+  88%, 90% { opacity: 1; transform: translateY(0); }
+  96%, 100%{ opacity: 0; transform: translateY(6px); }
+}
+
+.why1-node-1   { animation: why1Node1 10s ease-in-out infinite; }
+.why1-node-2   { animation: why1Node2 10s ease-in-out infinite; }
+.why1-node-3   { animation: why1Node3 10s ease-in-out infinite; }
+.why1-conn-1   { animation: why1Conn1 10s ease-in-out infinite; }
+.why1-conn-2   { animation: why1Conn2 10s ease-in-out infinite; }
+.why1-log-1    { animation: why1Log1  10s ease-in-out infinite; }
+.why1-log-2    { animation: why1Log2  10s ease-in-out infinite; }
+.why1-log-3    { animation: why1Log3  10s ease-in-out infinite; }
+.why1-toast    { animation: why1Toast 10s ease-in-out infinite; }
+
+/* ── WHY2: Auto-Scaling  (10 s loop) ────────────────────── */
+
+/* Bars spike and recover */
+@keyframes why2BarSpike {
+  0%, 15%  { height: 42px; background: rgba(26,111,255,0.2); }
+  35%, 60% { height: 62px; background: rgba(26,111,255,0.55); }
+  80%, 100%{ height: 42px; background: rgba(26,111,255,0.2); }
+}
+@keyframes why2BarPeak {
+  0%, 20%  { height: 68px; background: rgba(26,111,255,0.5); }
+  30%, 55% { height: 85px; background: rgba(0,180,216,0.7); }
+  75%, 100%{ height: 68px; background: rgba(26,111,255,0.5); }
+}
+@keyframes why2BarHigh {
+  0%, 18%  { height: 55px; background: rgba(26,111,255,0.35); }
+  32%, 58% { height: 72px; background: rgba(26,111,255,0.6); }
+  78%, 100%{ height: 55px; background: rgba(26,111,255,0.35); }
+}
+
+/* Pod lights — 12 pods, first 3 always on, rest fade in staggered */
+@keyframes why2PodOn {
+  0%, 5%   { background: rgba(26,111,255,0.15); border-color: rgba(26,111,255,0.2); }
+  25%, 70% { background: rgba(16,185,129,0.4);  border-color: rgba(16,185,129,0.55); }
+  90%, 100%{ background: rgba(26,111,255,0.15); border-color: rgba(26,111,255,0.2); }
+}
+
+/* Badge */
+@keyframes why2Badge {
+  0%, 35%  { opacity: 0; transform: translateY(4px); }
+  46%, 80% { opacity: 1; transform: translateY(0); }
+  92%, 100%{ opacity: 0; transform: translateY(4px); }
+}
+
+.why2-bar-spike { animation: why2BarSpike 10s ease-in-out infinite; }
+.why2-bar-peak  { animation: why2BarPeak  10s ease-in-out infinite; }
+.why2-bar-high  { animation: why2BarHigh  10s ease-in-out infinite; }
+.why2-badge     { animation: why2Badge    10s ease-in-out infinite; }
+
+/* Pods 1-3 always on; 4-12 activate staggered */
+.why2-pod-1, .why2-pod-2, .why2-pod-3 {
+  background: rgba(16,185,129,0.4) !important;
+  border-color: rgba(16,185,129,0.55) !important;
+}
+.why2-pod-4  { animation: why2PodOn 10s 0.00s ease-in-out infinite; }
+.why2-pod-5  { animation: why2PodOn 10s 0.12s ease-in-out infinite; }
+.why2-pod-6  { animation: why2PodOn 10s 0.24s ease-in-out infinite; }
+.why2-pod-7  { animation: why2PodOn 10s 0.36s ease-in-out infinite; }
+.why2-pod-8  { animation: why2PodOn 10s 0.48s ease-in-out infinite; }
+.why2-pod-9  { animation: why2PodOn 10s 0.60s ease-in-out infinite; }
+.why2-pod-10 { animation: why2PodOn 10s 0.72s ease-in-out infinite; }
+.why2-pod-11 { animation: why2PodOn 10s 0.84s ease-in-out infinite; }
+.why2-pod-12 { animation: why2PodOn 10s 0.96s ease-in-out infinite; }
+
+/* ── WHY3: Uptime / SLA  (10 s loop) ────────────────────── */
+
+@keyframes why3Ring {
+  0%, 8%   { stroke-dashoffset: 144.5; }
+  50%, 85% { stroke-dashoffset: 1.4; }
+  96%, 100%{ stroke-dashoffset: 144.5; }
+}
+@keyframes why3Stat {
+  0%, 12%  { opacity: 0; }
+  24%, 85% { opacity: 1; }
+  96%, 100%{ opacity: 0; }
+}
+@keyframes why3Row1 {
+  0%, 18%  { opacity: 0; transform: translateX(4px); }
+  28%, 85% { opacity: 1; transform: translateX(0); }
+  96%, 100%{ opacity: 0; }
+}
+@keyframes why3Row2 {
+  0%, 28%  { opacity: 0; transform: translateX(4px); }
+  38%, 85% { opacity: 1; transform: translateX(0); }
+  96%, 100%{ opacity: 0; }
+}
+@keyframes why3Row3 {
+  0%, 38%  { opacity: 0; transform: translateX(4px); }
+  48%, 85% { opacity: 1; transform: translateX(0); }
+  96%, 100%{ opacity: 0; }
+}
+@keyframes why3Spark {
+  0%, 50%  { opacity: 0; }
+  62%, 85% { opacity: 1; }
+  96%, 100%{ opacity: 0; }
+}
+
+.why3-ring  { animation: why3Ring  10s ease-in-out infinite; }
+.why3-stat  { animation: why3Stat  10s ease-in-out infinite; }
+.why3-row-1 { animation: why3Row1  10s ease-in-out infinite; }
+.why3-row-2 { animation: why3Row2  10s ease-in-out infinite; }
+.why3-row-3 { animation: why3Row3  10s ease-in-out infinite; }
+.why3-spark { animation: why3Spark 10s ease-in-out infinite; }
+
+/* ============================================================
+   TESTIMONIALS SECTION — MARQUEE
+   ============================================================ */
+
+.testi-marquee-outer {
+  overflow: hidden;
+  padding: 48px 0 8px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.testi-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  will-change: transform;
+}
+
+.testi-track + .testi-track {
+  margin-top: 24px;
+}
+
+.testi-track-left  { animation: marqueeLeft  36s linear infinite; }
+.testi-track-right { animation: marqueeRight 28s linear infinite; }
+
+.testi-marquee-outer:hover .testi-track { animation-play-state: paused; }
+
+@keyframes marqueeLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marqueeRight {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.testi-card {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  cursor: default;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.testi-card:hover {
+  border-color: var(--border-accent) !important;
+  box-shadow: 0 0 28px rgba(26,111,255,0.08), 0 8px 28px rgba(0,0,0,0.25);
+}
+
+.testi-stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 14px;
+}
+
+.testi-quote {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  line-height: 1.68;
+  color: var(--text-secondary);
+  flex: 1;
+  margin-bottom: 18px;
+}
+
+.testi-divider {
+  height: 1px;
+  background: var(--border-default);
+  margin-bottom: 16px;
+}
+
+.testi-author {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.testi-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.testi-name {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.testi-role {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   CASE STUDIES SECTION — GRID + MOCKUP ANIMATIONS
+   ============================================================ */
+
+.cs-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 0;
+}
+
+@media (min-width: 900px) {
+  .cs-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+}
+
+.cs-mockup {
+  height: 160px;
+}
+
+.cs-read-link {
+  font-family: var(--font-heading);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--accent-light);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
+}
+.cs-read-link:hover { color: var(--accent); }
+
+/* ── CS1: buy.ca  (8 s loop) ─────────────────────────────── */
+@keyframes cs1SearchText {
+  0%, 4%   { width: 0; }
+  26%, 84% { width: 130px; }
+  94%, 100%{ width: 0; }
+}
+@keyframes cs1Listing1 {
+  0%, 20%  { opacity: 0; transform: translateY(5px); }
+  32%, 84% { opacity: 1; transform: translateY(0); }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs1Listing2 {
+  0%, 32%  { opacity: 0; transform: translateY(5px); }
+  44%, 84% { opacity: 1; transform: translateY(0); }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs1Pin1 {
+  0%, 24%  { opacity: 0; transform: translate(-50%, -120%); }
+  36%, 84% { opacity: 1; transform: translate(-50%, -100%); }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs1Pin2 {
+  0%, 34%  { opacity: 0; transform: translate(-50%, -120%); }
+  46%, 84% { opacity: 1; transform: translate(-50%, -100%); }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs1Pin3 {
+  0%, 44%  { opacity: 0; transform: translate(-50%, -120%); }
+  56%, 84% { opacity: 1; transform: translate(-50%, -100%); }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs1Filter1 {
+  0%, 52%  { opacity: 0; transform: translateX(-4px); }
+  62%, 84% { opacity: 1; transform: translateX(0); }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs1Filter2 {
+  0%, 58%  { opacity: 0; transform: translateX(-4px); }
+  68%, 84% { opacity: 1; transform: translateX(0); }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs1Filter3 {
+  0%, 64%  { opacity: 0; transform: translateX(-4px); }
+  74%, 84% { opacity: 1; transform: translateX(0); }
+  94%, 100%{ opacity: 0; }
+}
+.cs1-search-text { animation: cs1SearchText 8s ease-in-out infinite; }
+.cs1-listing-1   { animation: cs1Listing1   8s ease-in-out infinite; }
+.cs1-listing-2   { animation: cs1Listing2   8s ease-in-out infinite; }
+.cs1-pin-1       { animation: cs1Pin1       8s ease-in-out infinite; }
+.cs1-pin-2       { animation: cs1Pin2       8s ease-in-out infinite; }
+.cs1-pin-3       { animation: cs1Pin3       8s ease-in-out infinite; }
+.cs1-filter-1    { animation: cs1Filter1    8s ease-in-out infinite; }
+.cs1-filter-2    { animation: cs1Filter2    8s ease-in-out infinite; }
+.cs1-filter-3    { animation: cs1Filter3    8s ease-in-out infinite; }
+
+/* ── CS2: MintCRM  (8 s loop) ───────────────────────────── */
+@keyframes cs2Client1 {
+  0%, 6%   { opacity: 0; }
+  18%, 84% { opacity: 1; }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs2Client2 {
+  0%, 16%  { opacity: 0; }
+  28%, 84% { opacity: 1; }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs2Client3 {
+  0%, 26%  { opacity: 0; }
+  38%, 84% { opacity: 1; }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs2NewItem {
+  0%, 44%  { opacity: 0; transform: translateX(-6px); }
+  56%, 84% { opacity: 1; transform: translateX(0); }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs2ProgressWrap {
+  0%, 54%  { opacity: 0; }
+  64%, 84% { opacity: 1; }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs2Progress {
+  0%, 56%  { width: 0%; }
+  78%, 84% { width: 72%; }
+  94%, 100%{ width: 0%; }
+}
+.cs2-client-1      { animation: cs2Client1      8s ease-in-out infinite; }
+.cs2-client-2      { animation: cs2Client2      8s ease-in-out infinite; }
+.cs2-client-3      { animation: cs2Client3      8s ease-in-out infinite; }
+.cs2-new-item      { animation: cs2NewItem      8s ease-in-out infinite; }
+.cs2-progress-wrap { animation: cs2ProgressWrap 8s ease-in-out infinite; }
+.cs2-progress      { animation: cs2Progress     8s ease-in-out infinite; }
+
+/* Activity items (non-new) are shown statically once cs2-client-1 reveals */
+.cs2-item-1, .cs2-item-2 {
+  animation: cs2Client1 8s ease-in-out infinite;
+}
+
+/* ── CS3: Agent 360  (8 s loop) ─────────────────────────── */
+@keyframes cs3StatusDot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+  50%      { box-shadow: 0 0 0 5px rgba(16,185,129,0); }
+}
+@keyframes cs3Processing {
+  0%, 4%   { opacity: 0; }
+  16%, 84% { opacity: 1; }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs3UserMsg {
+  0%, 22%  { opacity: 0; transform: translateY(4px); }
+  34%, 84% { opacity: 1; transform: translateY(0); }
+  94%, 100%{ opacity: 0; }
+}
+@keyframes cs3DotsWrap {
+  0%, 36%  { opacity: 0; }
+  44%, 54% { opacity: 1; }
+  62%, 100%{ opacity: 0; }
+}
+@keyframes cs3Response {
+  0%, 52%  { opacity: 0; transform: translateY(4px); }
+  64%, 84% { opacity: 1; transform: translateY(0); }
+  94%, 100%{ opacity: 0; }
+}
+.cs3-status-dot { animation: cs3StatusDot  1.6s ease-in-out infinite; }
+.cs3-processing { animation: cs3Processing 8s ease-in-out infinite; }
+.cs3-user-msg   { animation: cs3UserMsg    8s ease-in-out infinite; }
+.cs3-dots-wrap  { animation: cs3DotsWrap   8s ease-in-out infinite; }
+.cs3-response   { animation: cs3Response   8s ease-in-out infinite; }
+
+/* ============================================================
+   METRICS SECTION — GRID + CARD ANIMATIONS
+   ============================================================ */
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+.metrics-card {
+  transition: border-color 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.metrics-card:hover {
+  border-color: rgba(26, 111, 255, 0.28) !important;
+  box-shadow: 0 0 32px rgba(26, 111, 255, 0.06), 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Pulse ring — expands outward from behind the stat number */
+@keyframes metricsRingExpand {
+  0%   { transform: translate(-50%, -50%) scale(0.8); opacity: 0.55; }
+  100% { transform: translate(-50%, -50%) scale(2.1); opacity: 0; }
+}
+
+.metrics-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(26, 111, 255, 0.45);
+  animation: metricsRingExpand 2.5s ease-out infinite;
+  pointer-events: none;
+}
+
+/* Indigo glow pulse on stat number */
+@keyframes metricsNumberGlow {
+  0%, 100% { text-shadow: none; }
+  50%      {
+    text-shadow:
+      0 0 18px rgba(26, 111, 255, 0.45),
+      0 0 36px rgba(0, 180, 216, 0.18);
+  }
+}
+
+.metrics-number-glow {
+  animation: metricsNumberGlow 3s ease-in-out infinite;
+}
