@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import Button from '../ui/Button';
 
 const SERVICES = [
   { label: 'Product Engineering',    to: '/services/product-engineering' },
@@ -85,9 +84,9 @@ export default function Header() {
 
   const navLinkStyle = (isActive: boolean): React.CSSProperties => ({
     fontFamily: 'var(--font-heading)',
-    fontSize: '15px',
+    fontSize: '14px',
     fontWeight: 500,
-    color: isActive ? 'var(--text-primary)' : 'var(--text-secondary)',
+    color: isActive ? '#fff' : 'rgba(255,255,255,0.85)',
     padding: '8px 12px',
     borderRadius: '8px',
     transition: 'color 0.2s',
@@ -101,9 +100,9 @@ export default function Header() {
     border: 'none',
     cursor: 'pointer',
     fontFamily: 'var(--font-heading)',
-    fontSize: '15px',
+    fontSize: '14px',
     fontWeight: 500,
-    color: 'var(--text-secondary)',
+    color: 'rgba(255,255,255,0.85)',
     padding: '8px 12px',
     borderRadius: '8px',
     transition: 'color 0.2s',
@@ -122,13 +121,13 @@ export default function Header() {
         transition: 'background 0.4s, border-color 0.4s',
       }}
     >
-      <div style={{ padding: '0 40px', width: '100%', boxSizing: 'border-box' }}>
+      <div style={{ padding: '0 24px', width: '100%', boxSizing: 'border-box' }}>
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr auto 1fr',
             alignItems: 'center',
-            height: '72px',
+            height: '62px',
           }}
         >
           {/* Logo — left */}
@@ -189,10 +188,14 @@ export default function Header() {
           {/* CTA + mobile controls — right */}
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '12px' }}>
             <div className="desktop-only">
-              <Button to="/contact" variant="primary" size="sm">Book a Call</Button>
+              <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-default)', borderRadius: 12, padding: 3 }}>
+                <Link to="/contact" className="btn btn-primary" style={{ borderRadius: 9, fontSize: 13, padding: '10px 20px', background: '#fff', color: '#0a0f1e', boxShadow: 'none' }}>Book a Call</Link>
+              </div>
             </div>
             <div className="mobile-only" style={{ alignItems: 'center', gap: '12px' }}>
-              <Button to="/contact" variant="primary" size="sm">Book a Call</Button>
+              <div style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border-default)', borderRadius: 12, padding: 3 }}>
+                <Link to="/contact" className="btn btn-primary" style={{ borderRadius: 9, fontSize: 13, padding: '10px 20px', background: '#fff', color: '#0a0f1e', boxShadow: 'none' }}>Book a Call</Link>
+              </div>
               <button
                 onClick={() => setMobileOpen((v) => !v)}
                 style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-primary)', padding: '6px', display: 'flex' }}
@@ -236,7 +239,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '15px',
+                  fontSize: '14px',
                   color: 'var(--text-secondary)',
                   padding: '9px 12px',
                   borderRadius: '8px',
@@ -267,7 +270,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(false)}
                 style={{
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '15px',
+                  fontSize: '14px',
                   color: 'var(--text-secondary)',
                   padding: '9px 12px',
                   borderRadius: '8px',
@@ -294,7 +297,7 @@ export default function Header() {
                   onClick={() => setMobileOpen(false)}
                   style={{
                     fontFamily: 'var(--font-heading)',
-                    fontSize: '15px',
+                    fontSize: '14px',
                     fontWeight: 500,
                     color: 'var(--text-primary)',
                     padding: '9px 12px',

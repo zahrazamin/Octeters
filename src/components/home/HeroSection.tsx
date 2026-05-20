@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
-import { gsap } from '../../lib/gsap';
 import { AnimatedGroup } from '../ui/AnimatedGroup';
 import HeroDashboard from './HeroDashboard';
+import { ShinyButton } from '../ui/shiny-button';
 import type { Variants } from 'framer-motion';
 
 const springVariants = {
@@ -30,164 +30,113 @@ const TRUST_LOGOS = [
 ];
 
 export default function HeroSection() {
-  const orbRef1 = useRef<HTMLDivElement>(null);
-  const orbRef2 = useRef<HTMLDivElement>(null);
   const [trustHovered, setTrustHovered] = useState(false);
-
-  useEffect(() => {
-    const orb1 = orbRef1.current;
-    const orb2 = orbRef2.current;
-    if (!orb1 || !orb2) return;
-
-    const ctx = gsap.context(() => {
-      gsap.to(orb1, {
-        y: -90,
-        ease: 'none',
-        scrollTrigger: { trigger: 'body', start: 'top top', end: '60% top', scrub: true },
-      });
-      gsap.to(orb2, {
-        y: -55,
-        ease: 'none',
-        scrollTrigger: { trigger: 'body', start: 'top top', end: '60% top', scrub: true },
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <>
       {/* ── Hero content ──────────────────────────────────────── */}
-      <section style={{ overflow: 'hidden', position: 'relative' }}>
+      <section style={{
+          overflow: 'hidden',
+          position: 'relative',
+          backgroundImage: 'url(/hero-bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center top',
+          backgroundRepeat: 'no-repeat',
+        }}>
 
-        {/* Background orbs */}
-        <div
-          ref={orbRef1}
-          aria-hidden
-          className="orb orb-indigo"
-          style={{
-            position: 'absolute',
-            width: 560,
-            height: 560,
-            top: '-12%',
-            right: '-8%',
-            zIndex: 0,
-            pointerEvents: 'none',
-            willChange: 'transform',
-          }}
-        />
-        <div
-          ref={orbRef2}
-          aria-hidden
-          className="orb orb-violet"
-          style={{
-            position: 'absolute',
-            width: 400,
-            height: 400,
-            bottom: '15%',
-            left: '-6%',
-            zIndex: 0,
-            pointerEvents: 'none',
-            willChange: 'transform',
-          }}
-        />
-
-        <div className="relative pt-24" style={{ zIndex: 1 }}>
-          {/* Radial vignette — pulls content into the dark bg */}
-          <div
-            aria-hidden
-            style={{
-              position: 'absolute',
-              inset: 0,
-              zIndex: -1,
-              background: 'radial-gradient(125% 125% at 50% 100%, transparent 0%, var(--bg-primary) 72%)',
-              pointerEvents: 'none',
-            }}
-          />
+        <div className="relative pt-52" style={{ zIndex: 1 }}>
 
           {/* ── Text block ──────────────────────────────────── */}
           <div className="container">
-            <div style={{ marginLeft: 0 }}>
-              <AnimatedGroup
-                variants={{ container: containerVariants, ...springVariants }}
-              >
-                {/* Badge */}
-                <div>
-                  <span
-                    className="chip"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: 6,
-                      cursor: 'default',
-                    }}
-                  >
-                    AI-Enabled Software Platforms
-                    <ChevronRight size={12} strokeWidth={2} />
-                  </span>
-                </div>
+            <AnimatedGroup variants={{ container: containerVariants, ...springVariants }}>
 
-                {/* Headline */}
-                <h1
-                  className="text-display"
+              {/* Badge */}
+              <div>
+                <span
                   style={{
-                    marginTop: 32,
-                    maxWidth: '640px',
-                    color: 'var(--text-primary)',
-                    fontWeight: 500,
-                    textWrap: 'balance',
-                  }}
-                >
-                  We Build{' '}
-                  <span className="gradient-text">AI-Enabled</span>
-                  <br />
-                  Software Platforms
-                </h1>
-
-                {/* Sub */}
-                <p
-                  className="text-body-lg"
-                  style={{
-                    marginTop: 28,
-                    maxWidth: '560px',
-                    color: 'var(--text-secondary)',
-                  }}
-                >
-                  For operations, commerce, and marketplaces — from MVP to enterprise scale.
-                </p>
-
-                {/* CTAs */}
-                <div
-                  style={{
-                    marginTop: 48,
-                    display: 'flex',
+                    display: 'inline-flex',
                     alignItems: 'center',
                     gap: 8,
-                    flexWrap: 'wrap',
+                    cursor: 'default',
+                    background: 'linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.03))',
+                    border: '1px solid rgba(255,255,255,0.06)',
+                    borderRadius: 9999,
+                    padding: '3px 10px 3px 3px',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
                   }}
                 >
-                  <div
+                  <span style={{
+                    background: 'linear-gradient(to bottom, rgba(255,255,255,0.18), rgba(255,255,255,0.06))',
+                    borderRadius: 9999,
+                    padding: '2px 8px',
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: 12,
+                    fontWeight: 600,
+                    color: '#fff',
+                    letterSpacing: '0.02em',
+                  }}>
+                    AI-Enabled
+                  </span>
+                  <span style={{
+                    fontFamily: 'var(--font-heading)',
+                    fontSize: 12,
+                    fontWeight: 400,
+                    color: 'rgba(255,255,255,0.85)',
+                    letterSpacing: '0.01em',
+                  }}>
+                    Software Platforms
+                  </span>
+                </span>
+              </div>
+
+              {/* Headline + Subtitle row */}
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr auto',
+                alignItems: 'center',
+                gap: '24px',
+                marginTop: 12,
+              }}>
+                {/* Left: headline */}
+                <div>
+                  <h1
+                    className="text-display"
                     style={{
-                      background: 'rgba(255,255,255,0.05)',
-                      border: '1px solid var(--border-default)',
-                      borderRadius: 14,
-                      padding: 3,
+                      color: '#fff',
+                      fontWeight: 600,
+                      margin: 0,
                     }}
                   >
-                    <Link to="/contact" className="btn btn-primary" style={{ borderRadius: 11 }}>
-                      Book a Call
+                    We Build AI-Enabled
+                    <br />
+                    Software Platforms
+                  </h1>
+                </div>
+
+                {/* Right: subtitle + CTAs */}
+                <div style={{ maxWidth: '340px', transform: 'translateX(-40px)' }}>
+                  <p
+                    style={{
+                      fontFamily: 'var(--font-sans)',
+                      fontSize: 16,
+                      color: '#fff',
+                      margin: 0,
+                      lineHeight: 1.7,
+                    }}
+                  >
+                    Leverage AI to build software platforms for operations, commerce, and marketplaces. More capabilities in fewer sprints — guided by your own business data.
+                  </p>
+                  <div style={{ marginTop: 24, display: 'flex', alignItems: 'center', gap: 8 }}>
+                    <ShinyButton to="/contact">Book a Call</ShinyButton>
+                    <Link to="/case-studies" className="btn btn-secondary" style={{ borderRadius: 11 }}>
+                      View Case Studies
                     </Link>
                   </div>
-                  <Link
-                    to="/case-studies"
-                    className="btn btn-secondary"
-                    style={{ borderRadius: 11 }}
-                  >
-                    View Case Studies
-                  </Link>
                 </div>
-              </AnimatedGroup>
-            </div>
+              </div>
+
+            </AnimatedGroup>
           </div>
 
           {/* ── App preview ─────────────────────────────────── */}
@@ -197,7 +146,7 @@ export default function HeroSection() {
             <div
               style={{
                 position: 'relative',
-                marginTop: 64,
+                marginTop: 32,
                 overflow: 'hidden',
                 padding: '0 8px',
               }}
