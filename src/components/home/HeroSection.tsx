@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { AnimatedGroup } from '../ui/AnimatedGroup';
-import HeroDashboard from './HeroDashboard';
 import { ShinyButton } from '../ui/shiny-button';
 import type { Variants } from 'framer-motion';
 
@@ -163,7 +162,7 @@ export default function HeroSection() {
                 }}
               />
 
-              {/* Dashboard card */}
+              {/* Dashboard image */}
               <div
                 className="container"
                 style={{
@@ -171,12 +170,15 @@ export default function HeroSection() {
                   overflow: 'hidden',
                   borderRadius: 20,
                   border: '1px solid var(--border-default)',
-                  padding: 16,
-                  background: 'var(--bg-card)',
-                  boxShadow: '0 4px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(26,111,255,0.06)',
+                  padding: '16px 16px 0',
+                  background: 'rgba(255,255,255,0.1)',
                 }}
               >
-                <HeroDashboard />
+                <img
+                  src="/dashboard.png"
+                  alt="Dashboard"
+                  style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '12px 12px 0 0' }}
+                />
               </div>
             </div>
           </AnimatedGroup>

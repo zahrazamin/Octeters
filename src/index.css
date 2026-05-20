@@ -112,7 +112,7 @@ img, svg { display: block; }
 /* Display — hero headlines */
 .text-display {
   font-family: var(--font-heading);
-  font-size: 70px;
+  font-size: 64px;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -248,7 +248,7 @@ img, svg { display: block; }
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 3, 8, 0.15);
   color: var(--text-primary);
   border: 1px solid var(--border-hover);
 }
@@ -529,7 +529,7 @@ img, svg { display: block; }
    GLASSMORPHISM — sticky header
    ============================================================ */
 .glass {
-  background: rgba(6, 8, 16, 0.85);
+  background: #000308;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom-color: var(--border-default);
