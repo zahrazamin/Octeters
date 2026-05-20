@@ -1,4 +1,5 @@
 import HeroSection from '../components/home/HeroSection';
+import GallerySection from '../components/home/GallerySection';
 import VerticalsSection from '../components/home/VerticalsSection';
 import ServicesSection from '../components/home/ServicesSection';
 import ProcessSection from '../components/home/ProcessSection';
@@ -56,6 +57,7 @@ export default function HomePage() {
         <CaseStudiesSection />
         <TestimonialsSection />
         <WhySection />
+        <GallerySection />
       </div>
 
     </div>
