@@ -43,6 +43,9 @@ export default function HeroSection() {
           backgroundRepeat: 'no-repeat',
         }}>
 
+        {/* Dark overlay to dim the background */}
+        <div aria-hidden style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)', zIndex: 0, pointerEvents: 'none' }} />
+
         <div className="relative pt-52" style={{ zIndex: 1 }}>
 
           {/* ── Text block ──────────────────────────────────── */}
